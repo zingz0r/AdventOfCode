@@ -18,9 +18,20 @@ internal static class Program
     public static void Main(string[] args)
     {
 
-        int year = 2023;
-        int day= 3;
+        int year;
+        Console.Write("Year: ");
+        while (!int.TryParse(Console.ReadLine(), out year) || year < 2023 || year > 2023)
+        {
+            Console.Write("Year: ");
+        }
 
+
+        int day;
+        Console.Write("Day: ");
+        while (!int.TryParse(Console.ReadLine(), out day) || day < 1 || day > 3)
+        {
+            Console.Write("Day: ");
+        }
 
         var assembly = _assemblies[year];
         var key = $"Day{day:d2}";
