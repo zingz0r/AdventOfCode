@@ -1,4 +1,4 @@
-﻿namespace _2023.Day2.Models;
+﻿namespace _2023.Day02.Models;
 
 public class Draft
 {

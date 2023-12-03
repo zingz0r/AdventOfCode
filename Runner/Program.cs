@@ -1,10 +1,8 @@
 ﻿using System.Reflection;
 using _2023.Day01;
 using Common;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Runner.Extensions;
 
 namespace Runner;
 
