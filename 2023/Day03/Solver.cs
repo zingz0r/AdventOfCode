@@ -8,80 +8,105 @@ public class Solver : ISolver
 {
     public string SolveFirst(string input)
     {
-        return ExtractPartNumbers(input.GetLines().ToList().GetCharacterMatrix())
+        return ExtractPartNumbers(input.GetLines().ToList())
             .Sum()
             .ToString();
     }
-    
+
     public string SolveSecond(string input)
     {
-        return string.Empty;
+        return ExtractGears(input.GetLines().ToList())
+            .Sum()
+            .ToString();
     }
-    
-    private static IEnumerable<int> ExtractPartNumbers(char?[,] matrix)
+
+    private static IEnumerable<int> ExtractPartNumbers(IReadOnlyList<string> lines)
     {
         var result = new List<int>();
-        for (var k = 0; k < matrix.GetLength(0); ++k)
+        for (var row = 0; row < lines.Count; ++row)
         {
-            for (var l = 0; l < matrix.GetLength(1); ++l)
+            for (var col = 0; col < lines[row].Length; ++col)
             {
-                if (!matrix[k, l].IsDigit())
+                if (!lines[row][col].IsSymbol())
                 {
                     continue;
                 }
 
-                if (!IsPartNumber(matrix, k, l))
+                result.AddRange(GetSurroundingPartNumbers(lines, row, col));
+            }
+        }
+
+        return result;
+    }
+    
+    private static IEnumerable<int> ExtractGears(IReadOnlyList<string> lines)
+    {
+        var result = new List<int>();
+        for (var row = 0; row < lines.Count; ++row)
+        {
+            for (var col = 0; col < lines[row].Length; ++col)
+            {
+                if (!lines[row][col].IsSymbol())
                 {
                     continue;
                 }
-                
-                while (--l > 0 && matrix[k, l].IsDigit()) { }
-                
-                var number = "";
-                if (l == 0 || l == matrix.GetLength(1) - 1)
+
+                var partNumbers = GetSurroundingPartNumbers(lines, row, col).ToList();
+                if (partNumbers.Count == 2)
                 {
-                    number += matrix[k, l];
+                    result.Add(partNumbers.Aggregate((first, second) => first * second));
                 }
-                
-                while (++l < matrix.GetLength(1) && matrix[k, l].IsDigit())
-                {
-                    number += matrix[k, l];
-                }
-                
-                result.Add(int.Parse(number));
             }
-            
         }
 
         return result;
     }
 
-    private static bool IsPartNumber(char?[,] matrix, int row, int column)
+    private static IEnumerable<int> GetSurroundingPartNumbers(IReadOnlyList<string> lines, int row, int col)
     {
-        for (var i = -1; i <= 1; ++i)
-        {
-            for (var j = -1; j <= 1; ++j)
-            {
-                var peekRowIndex = row + i;
-                var peekColumnIndex = column + j;
+        var result = new List<int>();
 
-                if (peekRowIndex == row && peekColumnIndex == column
-                    || peekRowIndex >= matrix.GetLength(0)
-                    || peekColumnIndex >= matrix.GetLength(1)
+        for (var rowDelta = -1; rowDelta <= 1; ++rowDelta)
+        {
+            for (var colDelta = -1; colDelta <= 1; ++colDelta)
+            {
+                var peekRowIndex = row + rowDelta;
+                var peekColumnIndex = col + colDelta;
+
+                if (peekRowIndex == row && peekColumnIndex == col
+                    || peekRowIndex >= lines.Count
+                    || peekColumnIndex >= lines[peekRowIndex].Length
                     || peekRowIndex < 0
-                    || peekColumnIndex < 0)
+                    || peekColumnIndex < 0
+                    || !char.IsDigit(lines[peekRowIndex][peekColumnIndex]))
                 {
                     continue;
                 }
 
-                if (matrix[peekRowIndex, peekColumnIndex].IsSymbol())
+                while (--peekColumnIndex > 0 && char.IsDigit(lines[peekRowIndex][peekColumnIndex]))
                 {
-                    return true;
                 }
+
+                var number = "";
+                if (peekColumnIndex == 0 || peekColumnIndex == lines[peekRowIndex].Length - 1)
+                {
+                    number += lines[peekRowIndex][peekColumnIndex];
+                }
+
+                while (++peekColumnIndex < lines[peekRowIndex].Length && char.IsDigit(lines[peekRowIndex][peekColumnIndex]))
+                {
+                    number += lines[peekRowIndex][peekColumnIndex];
+                }
+
+                if (!string.IsNullOrEmpty(number))
+                {
+                    result.Add(int.Parse(number));
+                }
+
+                colDelta = peekColumnIndex - col;
             }
         }
 
-        return false;
+        return result;
     }
-
 }
