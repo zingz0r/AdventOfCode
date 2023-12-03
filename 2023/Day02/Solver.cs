@@ -1,5 +1,4 @@
-﻿using _2023.Day2.Models;
-using Common;
+﻿using Common;
 using Common.Extensions;
 using Game = _2023.Day02.Models.Game;
 

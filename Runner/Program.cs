@@ -34,12 +34,12 @@ internal static class Program
         var assembly = _assemblies[year];
         var key = $"Day{day:d2}";
         var solverType = assembly.GetTypes().First(x => !string.IsNullOrEmpty(x.Namespace) && string.Equals(x.Namespace, $"_{year}.{key}"));
-        var inputFile = Path.Combine(Path.GetDirectoryName(assembly.Location), key, "Input", "input.txt");
+        var inputFile = Path.Combine(Path.GetDirectoryName(assembly.Location)!, key, "Input", "input.txt");
         
         var builder = new HostBuilder()
             .ConfigureServices((_, services) =>
             {
-                services.AddSingleton<ISolver>(_ => (ISolver)Activator.CreateInstance(solverType));
+                services.AddSingleton<ISolver>(_ => (ISolver)Activator.CreateInstance(solverType)!);
                 services.AddSingleton<IRunner, Runner>();
             })
             .Build();
