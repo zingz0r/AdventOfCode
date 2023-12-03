@@ -1,4 +1,4 @@
-﻿namespace _2;
+﻿namespace _2023.Day2;
 
 public enum Colors
 {

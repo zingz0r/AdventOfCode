@@ -1,4 +1,4 @@
-﻿namespace _2.Extensions;
+﻿namespace _2023.Day2.Extensions;
 
 public static class ListExtensions
 {

@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using _2.Extensions;
+using _2023.Day2.Extensions;
 
-namespace _2.Models;
+namespace _2023.Day2.Models;
 
 public partial class Game
 {
