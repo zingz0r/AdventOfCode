@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <Folder Include="Day01\Extensions\" />
+      <Folder Include="Day03\Input\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,6 +28,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="Day02\Input\input.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Day03\Input\input.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
