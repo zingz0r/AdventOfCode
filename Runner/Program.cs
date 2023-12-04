@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using _2023.Day01;
 using Common.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,20 +7,21 @@ namespace Runner;
 
 internal static class Program
 {
-    private static IDictionary<int, Assembly> _assemblies = new Dictionary<int, Assembly>
+    private static readonly IDictionary<int, Assembly> _assemblies = new Dictionary<int, Assembly>
     {
-        { 2023, typeof(Solver).Assembly }
+        { 2015, typeof(_2015.Day01.Solver).Assembly },
+        { 2023, typeof(_2023.Day01.Solver).Assembly }
     };
 
     public static void Main(string[] args)
     {
-        var year = 2023;//ReadConsole("Year", 2023, 2023);
-        var day = 4;//ReadConsole("Day", 1, 4);
+        var year = ReadConsole("Year", 2015, 2023);
+        var day = ReadConsole("Day", 1, 31);
 
         var assembly = _assemblies[year];
         var key = $"Day{day:d2}";
-        var solverType = assembly.GetTypes().First(x => !string.IsNullOrEmpty(x.Namespace) && string.Equals(x.Namespace, $"_{year}.{key}"));
-        var inputFile = Path.Combine(Path.GetDirectoryName(assembly.Location)!, key, "Input", "input.txt");
+        var solverType = assembly.GetTypes().First(x => x.IsClass && x.GetInterfaces().Contains(typeof(ISolver)));
+        var inputFile = Path.Combine(Path.GetDirectoryName(assembly.Location)!, year.ToString(), key, "Input", "input.txt");
 
         var builder = new HostBuilder()
             .ConfigureServices((_, services) =>

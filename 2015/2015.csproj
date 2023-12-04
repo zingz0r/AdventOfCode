@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>_2015</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Common\Common.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Day01\Input\"/>
+        <Folder Include="Day02\Input\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Day01\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+        <None Update="Day02\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+    </ItemGroup>
+
+</Project>

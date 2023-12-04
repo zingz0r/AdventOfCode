@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Runner\Runner.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2023", "2023\2023.csproj", "{8A592867-6E75-4462-8860-B2AAC99E7201}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2015", "2015\2015.csproj", "{87180F71-E229-4670-80E2-67C6EF4CD3FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,5 +28,9 @@ Global
 		{8A592867-6E75-4462-8860-B2AAC99E7201}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A592867-6E75-4462-8860-B2AAC99E7201}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A592867-6E75-4462-8860-B2AAC99E7201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87180F71-E229-4670-80E2-67C6EF4CD3FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87180F71-E229-4670-80E2-67C6EF4CD3FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87180F71-E229-4670-80E2-67C6EF4CD3FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87180F71-E229-4670-80E2-67C6EF4CD3FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

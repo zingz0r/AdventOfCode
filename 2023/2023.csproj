@@ -9,33 +9,39 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Day01\Extensions\" />
-      <Folder Include="Day03\Input\" />
+        <Folder Include="Day01\Extensions\"/>
+        <Folder Include="Day03\Input\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Common\Common.csproj" />
+        <ProjectReference Include="..\Common\Common.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Day1\Input\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day2\Input\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day01\Input\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day02\Input\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day03\Input\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Day04\Input\input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="Day1\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+        <None Update="Day2\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+        <None Update="Day01\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+        <None Update="Day02\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+        <None Update="Day03\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
+        <None Update="Day04\Input\input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>$(ProjectName)\%(RelativeDir)\%(Filename)%(Extension)</TargetPath>
+        </None>
     </ItemGroup>
 
 </Project>
