@@ -1,6 +1,6 @@
 using _2023.Day03.Extensions;
-using Common;
 using Common.Extensions;
+using Common.Interfaces;
 
 namespace _2023.Day03;
 

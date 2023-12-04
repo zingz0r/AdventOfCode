@@ -1,9 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using _2023.Day02.Extensions;
+﻿using Common.Extensions;
+using Common.Interfaces;
 
 namespace _2023.Day02.Models;
 
-public partial class Game
+public class Game : IModel
 {
     public int Id { get; }
     public IList<Draft> Drafts { get; } = new List<Draft>();
@@ -11,13 +11,10 @@ public partial class Game
     private const string _zero = "0";
     private static readonly char[] _gameAndDraftSeparator = { ':', ';' };
 
-    [GeneratedRegex(@"\d+", RegexOptions.Compiled)]
-    private static partial Regex DigitRegex();
-
     public Game(string line)
     {
         var items = line.Split(_gameAndDraftSeparator, StringSplitOptions.RemoveEmptyEntries).ToList();
-        Id = GetNumbers(items.PopFirst()).First();
+        Id = items.PopFirst().GetNumbers().First();
 
         foreach (var item in items)
         {
@@ -33,14 +30,9 @@ public partial class Game
 
         return new Draft
         {
-            Red = GetNumbers(reds).First(),
-            Green = GetNumbers(greens).First(),
-            Blue = GetNumbers(blues).First(),
+            Red = reds.GetNumbers().First(),
+            Green = greens.GetNumbers().First(),
+            Blue = blues.GetNumbers().First()
         };
-    }
-
-    private static IEnumerable<int> GetNumbers(string text)
-    {
-        return DigitRegex().Matches(text).Select(x => int.Parse(x.Value));
     }
 }

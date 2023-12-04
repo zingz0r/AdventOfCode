@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using Common;
 using Common.Extensions;
+using Common.Interfaces;
 
 namespace _2023.Day01;
 
